@@ -2,8 +2,9 @@ import Head from 'next/head'
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function Home() {
-  const router = useRouter();
+export default function PostId() {
+    const router = useRouter();
+    const { id } = router.query;
   return (
     <div className="container">
       <Head>
@@ -17,11 +18,23 @@ export default function Home() {
         </h1>
 
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Get started ID: {id}
         </p>
 
         <div className="grid">
-        <Link href={`${router.basePath}/about`} as={`${router.basePath}/about`}>
+        <Link href={`${router.basePath}/`} as={`${router.basePath}/`}>
+            <a className="card">
+                <h3>Home &rarr;</h3>
+                <p>Using Link Component</p>
+            </a>
+        </Link>
+        
+          <a onClick={() => router.push(`${router.basePath}/`, `${router.basePath}/`)} className="card">
+            <h3>Home &rarr;</h3>
+            <p>Using Router.push</p>
+          </a>
+
+          <Link href={`${router.basePath}/about`} as={`${router.basePath}/about`}>
             <a className="card">
                 <h3>About &rarr;</h3>
                 <p>Using Link Component</p>
@@ -34,17 +47,6 @@ export default function Home() {
           </a>
 
 
-          <Link href={`${router.basePath}/p/[id]`} as={`${router.basePath}/p/123`}>
-            <a className="card">
-                <h3>Dynamic Route &rarr;</h3>
-                <p>Using Link Component</p>
-            </a>
-        </Link>
-        
-          <a onClick={() => router.push(`${router.basePath}/p/[id]`, `${router.basePath}/p/123`)} className="card">
-          <h3>Dynamic Route &rarr;</h3>
-          <p>Using Router.push</p>
-          </a>
         </div>
       </main>
 
